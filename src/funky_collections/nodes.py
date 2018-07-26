@@ -1,11 +1,14 @@
 from typing import Any, Generator, List, Optional, Sequence, Union
 
 
-class ListNode:
+class ImmutableListNode:
     __slots__ = ("_data", "_prev", "_next")
 
     def __init__(
-        self, data: Any, prev: Optional["ListNode"], _next: Optional["ListNode"]
+        self,
+        data: Any,
+        prev: Optional["ImmutableListNode"],
+        _next: Optional["ImmutableListNode"],
     ) -> None:
         self._data = data
         self._prev = prev
@@ -27,17 +30,17 @@ class ListNode:
         return self._data
 
     @property
-    def previous_node(self) -> Optional["ListNode"]:
+    def previous_node(self) -> Optional["ImmutableListNode"]:
         return self._prev
 
     @previous_node.setter
-    def previous_node(self, value: "ListNode") -> None:
+    def previous_node(self, value: "ImmutableListNode") -> None:
         self._prev = value
 
     @property
-    def next_node(self) -> Optional["ListNode"]:
+    def next_node(self) -> Optional["ImmutableListNode"]:
         return self._next
 
     @next_node.setter
-    def next_node(self, value: "ListNode") -> None:
+    def next_node(self, value: "ImmutableListNode") -> None:
         self._next = value

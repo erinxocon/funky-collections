@@ -1,60 +1,65 @@
 from typing import Any, Callable, Generator, List, Optional, Sequence, Union
 
-from .node import ListNode
+from .nodes import ImmutableListNode
 
 
 class ImmutableFixedList:
-    __slots__ = ("max_len", "size", "_head", "_tail")
+    __slots__ = ("_max_len", "_size", "_head", "_tail")
 
     def __init__(self, max_len: int, *, seq: Sequence = None) -> None:
-        self.max_len = max_len
-        self.size = 0
-        self._head: Optional[ListNode] = None
-        self._tail: Optional[ListNode] = None
+        if max_len <= 0:
+            raise ValueError("Max lenth  must be more than 0")
+
+        self._max_len = max_len
+        self._size = 0
+        self._head: Optional[ImmutableListNode] = None
+        self._tail: Optional[ImmutableListNode] = None
 
         try:
             if seq is not None:
-                for val in seq[0 : self.max_len]:
-                    node = ListNode(val, self._tail, None)
+                for val in seq[0 : self._max_len]:
+                    node = ImmutableListNode(val, self._tail, None)
                     if self._head is None:
                         self._head = node
 
                     self._tail = node
 
-                    self.size += 1
+                    self._size += 1
         except TypeError:
             raise TypeError("seq must be a sequence object")
 
-    def enqueue_left(self, value: Any) -> None:
+    @property
+    def max_len(self) -> int:
+        return self._max_len
 
-        if self.size < self.max_len:
-            node = ListNode(value, None, self._head)
+    def append_left(self, value: Any) -> None:
+        if self._size < self._max_len:
+            node = ImmutableListNode(value, None, self._head)
 
             if self._tail is None:
                 self._tail = node
 
             self._head = node
 
-            self.size += 1
+            self._size += 1
 
         else:
             raise ValueError("Queue full!")
 
-    def enqueue_right(self, value: Any) -> None:
-
-        if self.size < self.max_len:
-            node = ListNode(value, self._tail, None)
+    def append_right(self, value: Any) -> None:
+        if self._size < self._max_len:
+            node = ImmutableListNode(value, self._tail, None)
             if self._head is None:
                 self._head = node
 
             self._tail = node
 
-            self.size += 1
+            self._size += 1
 
         else:
             raise ValueError("Queue full!")
 
-    def dequeue_left(self) -> Any:
+    def pop_left(self) -> Any:
         if self._head is None:
             raise ValueError("Queue Empty!")
 
@@ -66,7 +71,7 @@ class ImmutableFixedList:
         if self._tail is node:
             self._tail = None
 
-        self.size -= 1
+        self._size -= 1
 
         if node.previous_node is not None:
             node.previous_node.next_node = node.next_node
@@ -75,7 +80,7 @@ class ImmutableFixedList:
 
         return data
 
-    def dequeue_right(self) -> Any:
+    def pop_right(self) -> Any:
         if self._tail is None:
             raise ValueError("Queue Empty!")
 
@@ -87,7 +92,7 @@ class ImmutableFixedList:
         if self._head is node:
             self._head = None
 
-        self.size -= 1
+        self._size -= 1
 
         if node.previous_node is not None:
             node.previous_node.next_node = node.next_node
@@ -96,17 +101,17 @@ class ImmutableFixedList:
 
         return data
 
-    def get_node(self, index: int) -> ListNode:
+    def get_node(self, index: int) -> ImmutableListNode:
         try:
             if index < 0:
-                index = self.size + index
+                index = self._size + index
         except TypeError:
             raise TypeError("List indices must be integers")
 
-        if index < 0 or self.size <= index:
+        if index < 0 or self._size <= index:
             raise IndexError("List index is out of range")
 
-        middle_index = self.size // 2
+        middle_index = self._size // 2
 
         if index <= middle_index:
             node = self._head
@@ -115,7 +120,7 @@ class ImmutableFixedList:
 
         else:
             node = self._tail
-            start_index = self.size - 1
+            start_index = self._size - 1
             transverse_reversed = True
 
         if not transverse_reversed:
@@ -130,13 +135,15 @@ class ImmutableFixedList:
         return node  # type: ignore
 
     def __repr__(self) -> str:
+        data = f"{','.join(repr(x) for x in self)}"
+        return f"<ImmutableFixedList size={self._size} max_size={self.max_len} data=[{data}]>"
+
+    def __str__(self) -> str:
         data = f"{','.join(str(x) for x in self)}"
-        return (
-            f"<FixedLengthList size={self.size} max_size={self.max_len} data=[{data}]>"
-        )
+        return f"ImmutableFixedList({data})"
 
     def __len__(self) -> int:
-        return self.size
+        return self._size
 
     def __iter__(self) -> Generator:
         current = self._head
@@ -158,7 +165,7 @@ class ImmutableFixedList:
             else:
                 _slice = index.indices(len(self))
                 sliced = [self[i] for i in range(*_slice)]
-                return ImmutableFixedList(self.max_len, seq=sliced)
+                return ImmutableFixedList(self._max_len, seq=sliced)
 
         elif isinstance(index, int):
             return self.get_node(index).data
