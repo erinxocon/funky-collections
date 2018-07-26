@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "93e2129ee88500478a1f520da1c20c1eb42068d7b958dccd5caea2187ab845a6"
+            "sha256": "0491fab80c88f6e9c04bafff3e0e15a3a23b4cd376fc1ac9ab27d90f37a471d1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,7 +16,7 @@
         ]
     },
     "default": {
-        "custom-collections": {
+        "funky-collections": {
             "editable": true,
             "path": "."
         }

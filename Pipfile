@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-custom-collections = {editable = true, path = "."}
+funky-collections = {editable = true, path = "."}
 
 [dev-packages]
 pylint = "*"
@@ -14,7 +14,6 @@ ipython = "*"
 rope = "*"
 pytest = "*"
 pytest-xdist = "*"
-
 
 [requires]
 python_version = "3.7"

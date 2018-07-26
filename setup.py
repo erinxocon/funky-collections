@@ -33,12 +33,12 @@ def find_version(*file_paths):
 
 
 # Package meta-data.
-NAME = "custom-collections"
+NAME = "funky-collections"
 DESCRIPTION = "A collection of custom collections implamented in pure python."
-URL = "https://github.com/erinxocon/custom-collections"
+URL = "https://github.com/erinxocon/funky-collections"
 EMAIL = "erinocon5@gmail.com"
 AUTHOR = "Erin O'Connell"
-VERSION = find_version("src", "__init__.py")
+VERSION = find_version("src", "funky_collections", "__init__.py")
 
 # What packages are required for this module to be executed?
 REQUIRED: List[str] = []
@@ -103,7 +103,6 @@ setup(
         "Intended Audience :: Developers",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: Implementation :: CPython",
