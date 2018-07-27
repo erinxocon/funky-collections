@@ -1,23 +1,23 @@
 import abc
-import collections
 
 from typing import Any, Generator, List, Optional, Sequence, Union
 
 from .nodes import ImmutableListNode, MutableListNode
 
-# Custom Types
-NODE_TYPE = Union[Optional[ImmutableListNode], Optional[MutableListNode]]
+# Complex Types
+NODE_TYPE = Union[ImmutableListNode, MutableListNode]
+NODE_TYPE_NONE = Union[ImmutableListNode, MutableListNode, None]
 
 
-class ImmutableDoublyLinkedList(collections.abc.Sequence):
+class DoublyLinkedList(abc.ABC):
     __slots__ = ("_size", "_head", "_tail")
 
     @abc.abstractmethod
     def __init__(self) -> None:
         """Initialize a list with optional max length"""
         self._size = 0
-        self._head: NODE_TYPE = None
-        self._tail: NODE_TYPE = None
+        self._head: Any
+        self._tail: Any
 
     @abc.abstractmethod
     def append_left(self, value: Any) -> None:
@@ -35,7 +35,7 @@ class ImmutableDoublyLinkedList(collections.abc.Sequence):
     def pop_right(self) -> Any:
         """Pop an element from the right side of the list"""
 
-    def get_node(self, index: int) -> ImmutableListNode:
+    def get_node(self, index: int) -> NODE_TYPE:
         try:
             if index < 0:
                 index = self._size + index

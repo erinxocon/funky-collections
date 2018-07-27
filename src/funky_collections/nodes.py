@@ -16,12 +16,12 @@ class ListNodeBase:
             _next._prev = self
 
     @property  # type: ignore
-    @abc.abstractmethod
+    @abc.abstractproperty
     def data(self) -> Any:
         """retrieve data from the node"""
 
     @data.setter  # type: ignore
-    @abc.abstractmethod
+    @abc.abstractproperty
     def data(self, value: Any) -> None:
         """set the node's data attribute"""
 
@@ -55,21 +55,21 @@ class ImmutableListNode(ListNodeBase):
         prev: Optional["ImmutableListNode"],
         _next: Optional["ImmutableListNode"],
     ) -> None:
-        super.__init__(data, prev, _next)
+        super().__init__(data, prev, _next)
 
     @property
     def data(self) -> Any:
         return self._data
 
 
-class MutableListNode(ImmutableListNode):
+class MutableListNode(ListNodeBase):
     def __init__(
         self,
         data: Any,
         prev: Optional["MutableListNode"],
         _next: Optional["MutableListNode"],
     ) -> None:
-        super.__init__(data, prev, _next)
+        super().__init__(data, prev, _next)
 
     @property
     def data(self) -> Any:

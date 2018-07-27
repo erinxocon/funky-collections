@@ -3,23 +3,24 @@ import collections
 from typing import Any, Generator, List, Optional, Sequence, Union
 
 from .abc import DoublyLinkedList
-from .nodes import ImmutableListNode
+from .nodes import MutableListNode
 
 
-class ImmutableFixedList(DoublyLinkedList, collections.abc.Sequence):
+class MutableFixedList(DoublyLinkedList, collections.abc.MutableSequence):
     __slots__ = "_max_len"
 
     def __init__(self, max_len: int = 0, seq: Sequence = ()) -> None:
         if max_len <= 0:
             raise ValueError("Max lenth  must be more than 0")
-        super().__init__()
-        self._head: Optional[ImmutableListNode] = None
-        self._tail: Optional[ImmutableListNode] = None
+
         self._max_len = max_len
+        self._head: Optional[MutableListNode] = None
+        self._tail: Optional[MutableListNode] = None
+        super().__init__()
 
         try:
             for val in seq[0 : self._max_len]:
-                node = ImmutableListNode(val, self._tail, None)
+                node = MutableListNode(val, self._tail, None)
                 if self._head is None:
                     self._head = node
 
@@ -35,7 +36,7 @@ class ImmutableFixedList(DoublyLinkedList, collections.abc.Sequence):
 
     def append_left(self, value: Any) -> None:
         if self._size < self._max_len:
-            node = ImmutableListNode(value, None, self._head)
+            node = MutableListNode(value, None, self._head)
 
             if self._tail is None:
                 self._tail = node
@@ -49,7 +50,7 @@ class ImmutableFixedList(DoublyLinkedList, collections.abc.Sequence):
 
     def append_right(self, value: Any) -> None:
         if self._size < self._max_len:
-            node = ImmutableListNode(value, self._tail, None)
+            node = MutableListNode(value, self._tail, None)
             if self._head is None:
                 self._head = node
 
@@ -119,15 +120,14 @@ class ImmutableFixedList(DoublyLinkedList, collections.abc.Sequence):
             raise TypeError("List index must be int or slice")
 
 
-class ImmutableList(DoublyLinkedList, collections.abc.Sequence):
+class MutableList(DoublyLinkedList, collections.abc.MutableSequence):
     def __init__(self, seq: Sequence = ()) -> None:
+        self._head: Optional[MutableListNode] = None
+        self._tail: Optional[MutableListNode] = None
         super().__init__()
-        self._head: Optional[ImmutableListNode] = None
-        self._tail: Optional[ImmutableListNode] = None
-
         try:
             for val in seq:
-                node = ImmutableListNode(val, self._tail, None)
+                node = MutableListNode(val, self._tail, None)
                 if self._head is None:
                     self._head = node
 
@@ -138,7 +138,7 @@ class ImmutableList(DoublyLinkedList, collections.abc.Sequence):
             raise TypeError("seq must be a sequence object")
 
     def append_left(self, value: Any) -> None:
-        node = ImmutableListNode(value, None, self._head)
+        node = MutableListNode(value, None, self._head)
 
         if self._tail is None:
             self._tail = node
@@ -149,7 +149,7 @@ class ImmutableList(DoublyLinkedList, collections.abc.Sequence):
 
     def append_right(self, value: Any) -> None:
 
-        node = ImmutableListNode(value, self._tail, None)
+        node = MutableListNode(value, self._tail, None)
         if self._head is None:
             self._head = node
 
