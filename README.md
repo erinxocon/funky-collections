@@ -6,8 +6,8 @@ Currently Available:
 
 * Immutable Lists
 * Immutable Fixed Length Lists
-* Mutable Lists
-* Mutable Fixed Lenth Lists
+* Mutable Lists sort of
+* Mutable Fixed Lenth Lists sort of
 
 Todo:
 * Sets
