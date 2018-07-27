@@ -3,7 +3,10 @@ import collections
 
 from typing import Any, Generator, List, Optional, Sequence, Union
 
-from .nodes import ImmutableListNode
+from .nodes import ImmutableListNode, MutableListNode
+
+# Custom Types
+NODE_TYPE = Union[Optional[ImmutableListNode], Optional[MutableListNode]]
 
 
 class ImmutableDoublyLinkedList(collections.abc.Sequence):
@@ -13,8 +16,8 @@ class ImmutableDoublyLinkedList(collections.abc.Sequence):
     def __init__(self) -> None:
         """Initialize a list with optional max length"""
         self._size = 0
-        self._head: Optional[ImmutableListNode] = None
-        self._tail: Optional[ImmutableListNode] = None
+        self._head: NODE_TYPE = None
+        self._tail: NODE_TYPE = None
 
     @abc.abstractmethod
     def append_left(self, value: Any) -> None:
