@@ -15,3 +15,5 @@ Todo:
 * FIFO Stack
 * FILO Stack
 * Optimize collections by introducing new tree search methods
+* Test all of the things!
+* Benchmark all of the things!
