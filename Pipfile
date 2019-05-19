@@ -10,7 +10,6 @@ funky-collections = {editable = true, path = "."}
 ipython = "*"
 pytest = "*"
 pytest-xdist = "*"
-twine = "*"
 
 [requires]
 python_version = "3.7"

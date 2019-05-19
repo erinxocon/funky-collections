@@ -4,12 +4,13 @@
     "service": "app",
     "workspaceFolder": "/workspace",
     "extensions": [
-        "ms-python.python"
+        "ms-python.python",
+        "bungcip.better-toml",
+        "coenraads.bracket-pair-colorizer-2",
+        "waderyan.gitblame",
+        "oderwat.indent-rainbow",
+        "redhat.vscode-yaml"
     ],
     "shutdownAction": "stopCompose",
-    "postCreateCommand": [
-        "/bin/bash",
-        "-c",
-        "/root/.pyenv/versions/3.7.3/bin/pipenv install --dev"
-    ]
+    "postCreateCommand": "git config user.email erinocon5@gmail.com; /root/.pyenv/versions/3.7.3/bin/pipenv sync --dev"
 }

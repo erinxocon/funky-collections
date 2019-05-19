@@ -10,7 +10,7 @@ COPY .devcontainer/settings.remote.json /root/.vscode-remote/data/Machine/settin
 RUN mkdir /workspace
 WORKDIR /workspace
 
-RUN python -m pip install black pipenv rope
+RUN python -m pip install black pipenv rope twine
 
 # Clean up
 RUN apt-get autoremove -y \
