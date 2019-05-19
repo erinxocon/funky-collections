@@ -7,16 +7,9 @@ name = "pypi"
 funky-collections = {editable = true, path = "."}
 
 [dev-packages]
-pylint = "*"
-black = "*"
-mypy = "*"
 ipython = "*"
-rope = "*"
 pytest = "*"
 pytest-xdist = "*"
 
 [requires]
 python_version = "3.7"
-
-[pipenv]
-allow_prereleases = true

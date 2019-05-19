@@ -1,0 +1,13 @@
+{
+    "python.pythonPath": "/root/.pyenv/shims/python",
+    "python.formatting.blackPath": "/root/.pyenv/shims/black",
+    "python.pipenvPath": "/root/.pyenv/versions/3.7.3/bin/pipenv",
+    "python.formatting.provider": "black",
+    "python.testing.pyTestEnabled": true,
+    "python.formatting.blackArgs": [
+        "--skip-string-normalization",
+        "--line-length",
+        "88"
+    ],
+    "terminal.integrated.shell.linux": "/bin/bash"
+}

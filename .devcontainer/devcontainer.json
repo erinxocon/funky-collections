@@ -1,0 +1,15 @@
+{
+    "name": "Library Development",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "extensions": [
+        "ms-python.python"
+    ],
+    "shutdownAction": "stopCompose",
+    "postCreateCommand": [
+        "/bin/bash",
+        "-c",
+        "/root/.pyenv/versions/3.7.3/bin/pipenv install --dev"
+    ]
+}
