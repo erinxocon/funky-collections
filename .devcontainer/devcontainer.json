@@ -2,7 +2,7 @@
     "name": "Library Development",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/home/riker/workspace",
     "extensions": [
         "ms-python.python",
         "bungcip.better-toml",
@@ -12,5 +12,5 @@
         "redhat.vscode-yaml"
     ],
     "shutdownAction": "stopCompose",
-    "postCreateCommand": "git config user.email erinocon5@gmail.com; /root/.pyenv/versions/3.7.3/bin/pipenv sync --dev"
+    "postCreateCommand": "git config user.email erinocon5@gmail.com; /home/riker/.pyenv/versions/3.7.3/bin/pipenv sync --dev"
 }

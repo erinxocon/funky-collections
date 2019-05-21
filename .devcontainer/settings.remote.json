@@ -1,7 +1,7 @@
 {
-    "python.pythonPath": "/root/.pyenv/shims/python",
-    "python.formatting.blackPath": "/root/.pyenv/shims/black",
-    "python.pipenvPath": "/root/.pyenv/versions/3.7.3/bin/pipenv",
+    "python.pythonPath": "/home/riker/.pyenv/shims/python",
+    "python.formatting.blackPath": "/home/riker/.pyenv/shims/black",
+    "python.pipenvPath": "/home/riker/.pyenv/versions/3.7.3/bin/pipenv",
     "python.formatting.provider": "black",
     "python.testing.pyTestEnabled": true,
     "python.formatting.blackArgs": [
@@ -9,5 +9,6 @@
         "--line-length",
         "88"
     ],
-    "terminal.integrated.shell.linux": "/bin/bash"
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "python.jediEnabled": false
 }
